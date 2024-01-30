@@ -1,0 +1,4 @@
+parameters:
+    level: 2
+    bootstrapFiles:
+        - phar://../phpunit/phpunit/vendor/autoload.php

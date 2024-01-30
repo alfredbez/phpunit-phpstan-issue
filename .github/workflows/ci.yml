@@ -24,4 +24,4 @@ jobs:
           run: tools/phpunit/phpunit --bootstrap=vendor/autoload.php tests
         -
           name: Run PHPStan
-          run: tools/phpstan/vendor/bin/phpstan analyse tests --level 2
+          run: tools/phpstan/vendor/bin/phpstan analyse tests --configuration tools/phpstan/config.neon
