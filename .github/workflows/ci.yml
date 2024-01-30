@@ -1,0 +1,27 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+    check:
+        name: Check
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v1
+        - name: Setup PHP with composer v2
+          uses: shivammathur/setup-php@v2
+          with:
+              php-version: '8.2'
+              tools: composer
+        -
+          name: Install PHPStan
+          run: composer install -d tools/phpstan
+        -
+          name: Install dependencies
+          run: composer install
+        -
+          name: Run PHPUnit
+          run: tools/phpunit/phpunit --bootstrap=vendor/autoload.php tests
+        -
+          name: Run PHPStan
+          run: tools/phpstan/vendor/bin/phpstan analyse tests --level 2
